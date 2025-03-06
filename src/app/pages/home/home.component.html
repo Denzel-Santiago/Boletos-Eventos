@@ -1,0 +1,9 @@
+<div *ngFor="let event of events">
+    <h2>{{ event.name }}</h2>
+    <p>Ubicación: {{ event.location }}</p>
+    <p>Fecha: {{ event.date | date }}</p>
+    <p>Boletos disponibles: {{ event.available_tickets }}</p>
+    <p>Precio: {{ event.price | currency }}</p>
+    <button (click)="verDetalles(event.id)">Ver Detalles</button>
+  </div>
+  
