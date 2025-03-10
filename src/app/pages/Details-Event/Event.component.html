@@ -1,0 +1,48 @@
+<div class="landing-page">
+    <header class="header-section">
+        <h1 class="page-title">Sweeper Tickets Admin View</h1>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="/">Inicio</a></li>
+                <li><a href="/pedidos">Compra</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="content-section">
+        <div class="form-container">
+            <h2>Comprar Boletos</h2>
+            <form class="form">
+                <label for="event">Selecciona un evento:</label>
+                <select id="event" name="event">
+                    <option value="">-- Selecciona un evento --</option>
+                    <option value="1">Tomorrowland</option>
+                    <option value="2">EDC</option>
+                    <option value="3">Ultra Music Festival</option>
+                    <option value="4">Awakenings Festival</option>
+                </select>
+                
+                <label for="location">Ubicación:</label>
+                <input type="text" id="location" name="location" disabled>
+                
+                <label for="date">Fecha:</label>
+                <input type="text" id="date" name="date" disabled>
+                
+                <label for="tickets">Boletos Disponibles:</label>
+                <input type="text" id="tickets" name="tickets" disabled>
+                
+                <label for="price">Precio:</label>
+                <input type="text" id="price" name="price" disabled>
+                
+                <div class="button-group">
+                    <button type="submit" class="buy-button">Comprar</button>
+                    <button type="button" class="cancel-button">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <footer class="footer-section">
+        <p>© 2025 Sweeper Tickets - Todos los derechos reservados</p>
+    </footer>
+</div>

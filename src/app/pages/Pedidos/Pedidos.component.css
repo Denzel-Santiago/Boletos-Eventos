@@ -1,15 +1,35 @@
+/* Estilos generales */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
 
+body {
+    background-color: #000; /* Fondo negro */
+    color: #fff;
+}
+
+/* Contenedor principal */
+.landing-page {
+    background-color: #000; /* Fondo negro */
+    min-height: 100vh; /* Ocupa toda la altura de la pantalla */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Empuja el footer hacia abajo */
+    align-items: center;
+}
 
 /* Header */
 .header-section {
     width: 100%;
-    background-color: #111111;
+    background-color: #111;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 1rem 2rem;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
-    margin-bottom: 2rem;
 }
 
 .page-title {
@@ -37,15 +57,15 @@
 
 /* Contenedor del formulario */
 .content-section {
+    flex: 1; /* Permite que crezca y empuje el footer hacia abajo */
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
-    flex: 1;
 }
 
 .form-container {
-    background: #111111;
+    background: #111;
     padding: 2rem;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
@@ -130,4 +150,5 @@ input:disabled {
     text-align: center;
     padding: 1rem;
     font-size: 0.9rem;
+    color: #ffffff;
 }

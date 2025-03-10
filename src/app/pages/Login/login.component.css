@@ -18,15 +18,14 @@ body {
     background: #000;
 }
 
-
 /* Estilos del formulario */
 .form {
-    --background: #1a1a1a; /* Fondo del formulario */
+    --background: #1a1a1a;
     --input-focus: #2dd4bf;
     --font-color: #fff;
     --font-color-sub: #aaa;
-    --bg-color: #222; /* Color de fondo interno */
-    --main-color: #2dd4bf; /* Color del borde */
+    --bg-color: #222;
+    --main-color: #2dd4bf;
 
     padding: 20px;
     background: var(--background);
@@ -80,8 +79,8 @@ body {
     font-weight: 600;
 }
 
-/* Botón de OAuth */
-.oauthButton {
+/* Estilos generales para todos los botones */
+button, .oauthButton {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -102,7 +101,7 @@ body {
     z-index: 1;
 }
 
-.oauthButton::before {
+button::before, .oauthButton::before {
     content: "";
     position: absolute;
     top: 0;
@@ -114,11 +113,11 @@ body {
     transition: all 250ms ease-in-out;
 }
 
-.oauthButton:hover {
+button:hover, .oauthButton:hover {
     color: #000;
 }
 
-.oauthButton:hover::before {
+button:hover::before, .oauthButton:hover::before {
     width: 100%;
 }
 
