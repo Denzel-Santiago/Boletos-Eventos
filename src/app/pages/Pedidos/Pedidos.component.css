@@ -14,10 +14,10 @@ body {
 /* Contenedor principal */
 .landing-page {
     background-color: #000; /* Fondo negro */
-    min-height: 100vh; /* Ocupa toda la altura de la pantalla */
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* Empuja el footer hacia abajo */
+    justify-content: space-between;
     align-items: center;
 }
 
@@ -55,92 +55,71 @@ body {
     color: #14b8a6;
 }
 
-/* Contenedor del formulario */
+/* Contenedor del contenido */
 .content-section {
-    flex: 1; /* Permite que crezca y empuje el footer hacia abajo */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-}
-
-.form-container {
-    background: #111;
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-    max-width: 400px;
-    width: 90%;
-    text-align: center;
-}
-
-.form-container h2 {
-    color: #2dd4bf;
-    margin-bottom: 1rem;
-}
-
-/* Estilos del formulario */
-.form {
+    flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 1rem;
-}
-
-label {
-    text-align: left;
-    color: #e5e7eb;
-    font-weight: bold;
-}
-
-input, select {
+    align-items: center;
     width: 100%;
-    padding: 0.5rem;
-    border: 2px solid #2dd4bf;
-    border-radius: 5px;
-    background-color: #222;
-    color: #fff;
-    font-size: 1rem;
+    padding: 2rem;
 }
 
-input:disabled {
-    background-color: #333;
-    color: #888;
-}
-
-/* Botones */
-.button-group {
+/* Contenedor de las tarjetas */
+.card-container {
     display: flex;
-    justify-content: space-between;
-    gap: 1rem;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    width: 100%;
+    max-width: 1200px;
 }
 
-.buy-button, .cancel-button {
-    flex: 1;
-    padding: 0.7rem;
-    border-radius: 5px;
+/* Estilos para cada tarjeta de evento */
+.event-card {
+    background: #111;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+    width: 280px;
+    text-align: center;
+    border: 2px solid #2dd4bf;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.event-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(255, 255, 255, 0.2);
+}
+
+.event-card h3 {
+    color: #2dd4bf;
+    margin-bottom: 10px;
+    font-size: 1.5rem;
+}
+
+.event-card p {
+    margin: 5px 0;
     font-size: 1rem;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    border: none;
+    color: #e5e7eb;
 }
 
+/* Botón de compra */
 .buy-button {
     background-color: #2dd4bf;
     color: #000;
+    border: none;
+    padding: 10px;
+    width: 100%;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: background-color 0.3s;
 }
 
 .buy-button:hover {
     background-color: #14b8a6;
-}
-
-.cancel-button {
-    background-color: #ff4b4b;
-    color: #fff;
-}
-
-.cancel-button:hover {
-    background-color: #cc0000;
 }
 
 /* Footer */

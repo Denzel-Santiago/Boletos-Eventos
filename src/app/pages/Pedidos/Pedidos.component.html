@@ -3,47 +3,28 @@
         <h1 class="page-title">Sweeper Tickets</h1>
         <nav>
             <ul class="nav-links">
-                <li><a href="/">Inicio</a></li>
-                <li><a href="/pedidos">Compra</a></li>
-                <li><a href="/Login">Login</a></li>
+                <li><a routerLink="/">Inicio</a></li>
+                <li><a routerLink="/pedidos">Compra</a></li>
+                <li><a routerLink="/Login">Login</a></li>
             </ul>
         </nav>
     </header>
 
     <div class="content-section">
-        <div class="form-container">
-            <h2>Comprar Boletos</h2>
-            <form class="form">
-                <label for="event">Selecciona un evento:</label>
-                <select id="event" name="event">
-                    <option value="">-- Selecciona un evento --</option>
-                    <option value="1">Tomorrowland</option>
-                    <option value="2">EDC</option>
-                    <option value="3">Ultra Music Festival</option>
-                    <option value="4">Awakenings Festival</option>
-                </select>
-                
-                <label for="location">Ubicación:</label>
-                <input type="text" id="location" name="location" disabled>
-                
-                <label for="date">Fecha:</label>
-                <input type="text" id="date" name="date" disabled>
-                
-                <label for="tickets">Boletos Disponibles:</label>
-                <input type="text" id="tickets" name="tickets" disabled>
-                
-                <label for="price">Precio:</label>
-                <input type="text" id="price" name="price" disabled>
-                
-                <div class="button-group">
-                    <button type="submit" class="buy-button">Comprar</button>
-                    <button type="button" class="cancel-button">Cancelar</button>
-                </div>
-            </form>
+        <h2 class="title">Eventos Disponibles</h2>
+        <div class="card-container">
+            <div class="event-card" *ngFor="let event of events">
+                <h3>{{ event.name }}</h3>
+                <p><strong>Ubicación:</strong> {{ event.location }}</p>
+                <p><strong>Fecha:</strong> {{ event.date }}</p>
+                <p><strong>Boletos Disponibles:</strong> {{ event.available_tickets }}</p>
+                <p><strong>Precio:</strong> ${{ event.price }}</p>
+                <button class="buy-button" (click)="buyTickets(event)">Comprar</button>
+            </div>
         </div>
     </div>
-    
+
     <footer class="footer-section">
-        <p>© 2025 Sweeper Tickets - Todos los derechos reservados</p>
+        <p>&copy; 2025 Sweeper Tickets - Todos los derechos reservados</p>
     </footer>
 </div>
