@@ -9,7 +9,7 @@ import { Evento } from '../Interfaces/Evento';
   providedIn: 'root'
 })
 export class EventService {
-  private apiUrl = `${environment.apiUrl}/events`; // Asegúrate de que `environment.apiUrl` sea "http://localhost:8000"
+  private apiUrl = `${environment.apiUrl}/events/`;
 
   constructor(private http: HttpClient) {}
 
@@ -23,13 +23,37 @@ export class EventService {
   }
 
   getEventById(id: number): Observable<Evento> {
-    const url = `${this.apiUrl}/${id}`;
-    console.log(`Obteniendo evento con ID: ${id} desde ${url}`);
-    
-    return this.http.get<Evento>(url).pipe(
+    return this.http.get<Evento>(`${this.apiUrl}${id}`).pipe(
       catchError(error => {
         console.error('Error obteniendo evento:', error);
         return throwError(() => new Error('No se pudo obtener el evento'));
+      })
+    );
+  }
+
+  createEvent(event: Evento): Observable<Evento> {
+    return this.http.post<Evento>(this.apiUrl, event).pipe(
+      catchError(error => {
+        console.error('Error creando evento:', error);
+        return throwError(() => new Error('No se pudo crear el evento'));
+      })
+    );
+  }
+
+  updateEvent(id: number, event: Evento): Observable<Evento> {
+    return this.http.put<Evento>(`${this.apiUrl}${id}`, event).pipe(
+      catchError(error => {
+        console.error('Error actualizando evento:', error);
+        return throwError(() => new Error('No se pudo actualizar el evento'));
+      })
+    );
+  }
+
+  deleteEvent(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}${id}`).pipe(
+      catchError(error => {
+        console.error('Error eliminando evento:', error);
+        return throwError(() => new Error('No se pudo eliminar el evento'));
       })
     );
   }
