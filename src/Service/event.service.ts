@@ -9,6 +9,31 @@ import { Evento } from '../Interfaces/Evento';
   providedIn: 'root'
 })
 export class EventService {
+// Nueva función para enviar mensaje con todo el JSON
+sendToQueue(event: Evento): Observable<any> {
+  const queueUrl = `${environment.apiUrl}/events/queue`;
+
+  return this.http.post(queueUrl, event).pipe(
+    catchError(error => {
+      console.error('Error enviando a la cola:', error);
+      return throwError(() => new Error('No se pudo enviar a la cola'));
+    })
+  );
+}
+
+buyTickets(event: Evento): Observable<any> {
+  const url = `${environment.apiUrl}/events/purchase`;
+  return this.http.post(url, event).pipe(
+    catchError(error => {
+      console.error('Error al realizar la compra:', error);
+      return throwError(() => new Error('No se pudo completar la compra'));
+    })
+  );
+}
+
+
+
+  
   private apiUrl = `${environment.apiUrl}/events/`;
 
   constructor(private http: HttpClient) {}

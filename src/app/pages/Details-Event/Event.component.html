@@ -1,38 +1,36 @@
 <div>
-    <h2>Gestión de Eventos</h2>
-  
-    <form #eventForm="ngForm" (ngSubmit)="editingEvent ? updateEvent() : addEvent()">
-      <label for="name">Nombre del Evento:</label>
-      <input type="text" id="name" [(ngModel)]="editingEvent?.name || newEvent.name" name="name" required>
-  
-      <label for="location">Ubicación:</label>
-      <input type="text" id="location" [(ngModel)]="editingEvent?.location || newEvent.location" name="location" required>
-  
-      <label for="date">Fecha:</label>
-      <input type="date" id="date" [(ngModel)]="editingEvent?.date || newEvent.date" name="date" required>
-  
-      <label for="available_tickets">Boletos Disponibles:</label>
-      <input type="number" [(ngModel)]="editingEvent?.available_tickets || newEvent.available_tickets" name="available_tickets" required>
-  
-      <label for="price">Precio:</label>
-      <input type="number" [(ngModel)]="editingEvent?.price || newEvent.price" name="price" step="0.01" required>
-  
-    </form>
-  
-    <button (click)="saveEvent(eventForm)">Guardar</button>
-    <button *ngIf="editingEvent" (click)="cancelEdit()">Cancelar</button>
-  
-    <h3>Eventos</h3>
-    <ul>
-      <li *ngFor="let event of events">
-        <h3>{{ event.name }}</h3>
-        <p>Ubicación: {{ event.location }}</p>
-        <p>Fecha: {{ event.date }}</p>
-        <p>Boletos disponibles: {{ event.available_tickets }}</p>
-        <p>Precio: {{ event.price | currency }}</p>
-        <button (click)="editEvent(event)">Editar</button>
-        <button (click)="deleteEvent(event.id)">Eliminar</button>
-      </div>
-    </div>
-  </div>
-  
+  <h2>Gestión de Eventos</h2>
+
+  <form #eventForm="ngForm" (ngSubmit)="editingEvent ? updateEvent() : addEvent()">
+    <label for="name">Nombre del Evento:</label>
+    <input type="text" id="name" [(ngModel)]="currentEvent.name" name="name" required>
+
+    <label for="location">Ubicación:</label>
+    <input type="text" id="location" [(ngModel)]="currentEvent.location" name="location" required>
+
+    <label for="date">Fecha:</label>
+    <input type="date" id="date" [(ngModel)]="currentEvent.date" name="date" required>
+
+    <label for="available_tickets">Boletos Disponibles:</label>
+    <input type="number" [(ngModel)]="currentEvent.available_tickets" name="available_tickets" required>
+
+    <label for="price">Precio:</label>
+    <input type="number" [(ngModel)]="currentEvent.price" name="price" step="0.01" required>
+
+    <button type="submit">{{ editingEvent ? 'Actualizar' : 'Guardar' }}</button>
+    <button type="button" *ngIf="editingEvent" (click)="cancelEdit()">Cancelar</button>
+  </form>
+
+  <h3>Eventos</h3>
+  <ul>
+    <li *ngFor="let event of events">
+      <h3>{{ event.name }}</h3>
+      <p>Ubicación: {{ event.location }}</p>
+      <p>Fecha: {{ event.date }}</p>
+      <p>Boletos disponibles: {{ event.available_tickets }}</p>
+      <p>Precio: {{ event.price | currency }}</p>
+      <button (click)="editEvent(event)">Editar</button>
+      <button (click)="deleteEvent(event.id)">Eliminar</button>
+    </li>
+  </ul>
+</div>

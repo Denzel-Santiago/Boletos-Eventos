@@ -37,7 +37,24 @@ export class PedidosComponent implements OnInit {
   }
 
   buyTickets(event: Evento): void {
-    console.log('Comprando boletos para:', event);
-    alert(`¡Compra exitosa para ${event.name}!`);
+    this.eventService.buyTickets(event).subscribe({
+      next: response => {
+        alert(`Compra exitosa para ${event.name}`);
+        console.log('Compra enviada:', response);
+  
+        // Enviar mensaje a RabbitMQ con toda la información del evento
+        this.eventService.sendToQueue(event).subscribe({
+          next: res => console.log('Mensaje enviado a la cola:', res),
+          error: err => console.error('Error enviando a la cola:', err),
+        });
+      },
+      error: err => {
+        alert('Error al realizar la compra');
+        console.error(err);
+      }
+    });
   }
+  
+  
+  
 }

@@ -9,7 +9,7 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-event',
   templateUrl: './event.component.html',
-  styleUrls: ['./event.component.css'],
+  styleUrls: ['./event.component.css'], // Ensure this matches the actual file name
   standalone: true,
   imports: [CommonModule, FormsModule, RouterModule]
 })
@@ -17,6 +17,7 @@ export class EventComponent implements OnInit {
   events: Evento[] = [];
   newEvent: Evento = this.initializeNewEvent();
   editingEvent: Evento | null = null;
+  currentEvent: Evento = this.initializeNewEvent(); // Holds the current event (new or being edited)
 
   constructor(private eventService: EventService) {}
 
@@ -43,9 +44,9 @@ export class EventComponent implements OnInit {
   }
 
   addEvent(): void {
-    if (!this.validateEvent(this.newEvent)) return;
+    if (!this.validateEvent(this.currentEvent)) return;
 
-    this.eventService.createEvent(this.newEvent).subscribe(
+    this.eventService.createEvent(this.currentEvent).subscribe(
       (event) => {
         this.events.push(event);
         this.resetForm();
@@ -56,12 +57,13 @@ export class EventComponent implements OnInit {
 
   editEvent(event: Evento): void {
     this.editingEvent = { ...event };
+    this.currentEvent = { ...event }; // Set the current event to the one being edited
   }
 
   updateEvent(): void {
     if (!this.editingEvent) return;
-  
-    this.eventService.updateEvent(this.editingEvent.id, this.editingEvent).subscribe(
+
+    this.eventService.updateEvent(this.editingEvent.id, this.currentEvent).subscribe(
       (updatedEvent) => {
         const index = this.events.findIndex(e => e.id === updatedEvent.id);
         if (index !== -1) {
@@ -72,7 +74,6 @@ export class EventComponent implements OnInit {
       (error) => console.error('Error al actualizar el evento:', error)
     );
   }
-  
 
   deleteEvent(id: number): void {
     if (confirm('¿Estás seguro de que deseas eliminar este evento?')) {
@@ -83,8 +84,13 @@ export class EventComponent implements OnInit {
     }
   }
 
+  cancelEdit(): void {
+    this.editingEvent = null;
+    this.currentEvent = this.initializeNewEvent(); // Reset the current event
+  }
+
   resetForm(): void {
-    this.newEvent = this.initializeNewEvent();
+    this.currentEvent = this.initializeNewEvent(); // Reset the current event
     this.editingEvent = null;
   }
 
