@@ -9,6 +9,9 @@ import { Evento } from '../Interfaces/Evento';
   providedIn: 'root'
 })
 export class EventService {
+
+
+
 // Nueva función para enviar mensaje con todo el JSON
 sendToQueue(event: Evento): Observable<any> {
   const queueUrl = `${environment.apiUrl}/events/queue`;
@@ -35,8 +38,19 @@ buyTickets(event: Evento): Observable<any> {
 
   
   private apiUrl = `${environment.apiUrl}/events/`;
+  private api2Url = `${environment.api2Url}/pedidos/log`;
 
   constructor(private http: HttpClient) {}
+
+    // Método para obtener los datos desde la API2
+    getEventFromApi2(): Observable<any> {
+      return this.http.get<any>(this.api2Url).pipe(
+        catchError(error => {
+          console.error('Error obteniendo datos desde API2:', error);
+          return throwError(() => new Error('No se pudo obtener los datos desde API2'));
+        })
+      );
+    }
 
   getEvents(): Observable<Evento[]> {
     return this.http.get<Evento[]>(this.apiUrl).pipe(

@@ -9,7 +9,7 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-event',
   templateUrl: './event.component.html',
-  styleUrls: ['./event.component.css'], // Ensure this matches the actual file name
+  styleUrls: ['./event.component.css'],
   standalone: true,
   imports: [CommonModule, FormsModule, RouterModule]
 })
@@ -17,12 +17,24 @@ export class EventComponent implements OnInit {
   events: Evento[] = [];
   newEvent: Evento = this.initializeNewEvent();
   editingEvent: Evento | null = null;
-  currentEvent: Evento = this.initializeNewEvent(); // Holds the current event (new or being edited)
+  currentEvent: Evento = this.initializeNewEvent();
+  api2Event: any = null; // Variable para almacenar los datos de la API2
 
   constructor(private eventService: EventService) {}
 
   ngOnInit(): void {
     this.loadEvents();
+    this.loadEventFromApi2();
+  }
+
+  loadEventFromApi2(): void {
+    this.eventService.getEventFromApi2().subscribe({
+      next: (data) => {
+        this.api2Event = data;
+        console.log('Datos recibidos desde API2:', this.api2Event);
+      },
+      error: (error) => console.error('Error cargando datos desde API2:', error)
+    });
   }
 
   initializeNewEvent(): Evento {
