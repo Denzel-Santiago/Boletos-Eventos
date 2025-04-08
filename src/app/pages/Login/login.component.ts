@@ -17,7 +17,7 @@ export class LoginComponent {
 
   login() {
     if (this.email.toLowerCase() === 'admin@example.com') {
-      this.router.navigate(['/Event']); // Redirige a la página del admin
+      this.router.navigate(['/event']); // Redirige a la página del admin
     } else {
       alert('Usuario no válido');
     }
