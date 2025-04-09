@@ -9,7 +9,7 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-event',
   templateUrl: './event.component.html',
-  styleUrls: ['./event.component.css'], // Ensure this matches the actual file name
+  styleUrls: ['./event.component.css'],
   standalone: true,
   imports: [CommonModule, FormsModule, RouterModule]
 })
@@ -17,13 +17,17 @@ export class EventComponent implements OnInit {
   events: Evento[] = [];
   newEvent: Evento = this.initializeNewEvent();
   editingEvent: Evento | null = null;
-  currentEvent: Evento = this.initializeNewEvent(); // Holds the current event (new or being edited)
+  currentEvent: Evento = this.initializeNewEvent();
+  api2Event: any = null; // Variable para almacenar los datos de la API2
 
   constructor(private eventService: EventService) {}
 
   ngOnInit(): void {
     this.loadEvents();
+   
   }
+
+
 
   initializeNewEvent(): Evento {
     return {
