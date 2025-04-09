@@ -24,18 +24,10 @@ export class EventComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadEvents();
-    this.loadEventFromApi2();
+   
   }
 
-  loadEventFromApi2(): void {
-    this.eventService.getEventFromApi2().subscribe({
-      next: (data) => {
-        this.api2Event = data;
-        console.log('Datos recibidos desde API2:', this.api2Event);
-      },
-      error: (error) => console.error('Error cargando datos desde API2:', error)
-    });
-  }
+
 
   initializeNewEvent(): Evento {
     return {
